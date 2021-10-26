@@ -1,0 +1,11 @@
+{
+  "name": "dsb-track",
+  "version": "0.0.1",
+  "description": "An app for tracking DSB and Affect.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Scudmarx",
+  "license": "MIT"
+}
