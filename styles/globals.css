@@ -48,9 +48,15 @@ a {
   padding: 10px;
   display: flex;
 }
-.dayhead.today {
+.today > .dayhead {
   font-size: large;
   font-weight: 600;
+}
+.past > .dayhead {
+  background-color: thistle;
+}
+.future > .dayhead {
+  background-color:slategrey;
 }
 .adl {
   background-color: aliceblue;

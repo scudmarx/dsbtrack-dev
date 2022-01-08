@@ -1,8 +1,8 @@
 
-const ADL = ({adl, achieved = false, toggle = () => {}}: {adl: any, achieved: boolean, toggle: Function}): JSX.Element => {
+const ADL = ({adl, achieved = false, handler = () => {}}: {adl: any, achieved: boolean, handler: Function}): JSX.Element => {
     
     const handleClick = ((event: any) => {
-        toggle(!achieved)
+        handler(!achieved)
     })
     return (
     <div key={adl.label} className={`adl ${achieved ? "achieved" : ""}`} onClick={handleClick}>
