@@ -1,0 +1,64 @@
+@import "./material.min.css";
+
+html,
+body {
+  height: unset;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  font-size: 32pt;
+  font-family: cursive;
+}
+
+.calendar {
+  display: grid;
+  height: calc(100vh - 12rem);
+  width: calc(100vw - 10rem);
+  grid-template-columns: auto auto auto auto auto auto auto;
+  margin: auto;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 30px auto;
+  opacity: 0.5;
+}
+.day.today {
+  opacity: 1;
+}
+.dayhead {
+  background-color: aquamarine;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  display: flex;
+}
+.dayhead.today {
+  font-size: large;
+  font-weight: 600;
+}
+.adl {
+  background-color: aliceblue;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adl.achieved {
+  background-color: chartreuse;
+}
