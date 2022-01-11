@@ -10,6 +10,7 @@ const Day = ({date, record, handler}: {date: string, record: ICheckIn, handler: 
         </div>
         {ADLs.map((adl, i) => <ADL 
             index={i}
+            key={i}
             adl={adl} 
             achieved={!!(record && record.adls.includes(adl.label))} 
             handler={handler(adl.label)}
