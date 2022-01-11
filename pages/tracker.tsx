@@ -68,7 +68,7 @@ const Tracker: NextPage = () => {
 
         <div id="tracker" className="calendar" onWheel={mouseWheel as any as WheelEventHandler<HTMLDivElement>}>
           {displayedDays.map((d,i) => 
-            <Day key={i} date={d} record={record[d]} handler={handler(d)} />)}
+            d ? <Day key={i} date={d} record={record[d]} handler={handler(d)} /> : <></> )}
         </div>
       </main>
     </div>

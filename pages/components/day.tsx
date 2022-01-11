@@ -2,7 +2,8 @@ import { ADLs, ICheckIn, IRecordState, toDayString } from '../api/data'
 import ADL from './adl'
 
 const Day = ({date, record, handler}: {date: string, record: ICheckIn, handler: Function}): JSX.Element => {
-    if (!date) return <></>
+    if (!date || typeof date != "string") return <></>
+    
     const timeline = parseInt(date.replaceAll("-","")) - parseInt(toDayString(new Date()).replaceAll("-",""))
     var day_component = (
     <div key={date} className={`day ${timeline > 0 ? "future" : timeline < 0 ? "past" : "today"}`}>
