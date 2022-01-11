@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState, WheelEventHandler } from 'react'
-import { IRecordState, loadData, newCheckIn, saveData, toDayString } from './api/data'
-import Day from './components/day'
+import { IRecordState, loadData, newCheckIn, saveData, toDayString } from '../api/data'
+import Day from '../components/day'
 
 const Tracker: NextPage = () => {
   
@@ -68,7 +68,8 @@ const Tracker: NextPage = () => {
 
         <div id="tracker" className="calendar" onWheel={mouseWheel as any as WheelEventHandler<HTMLDivElement>}>
           {displayedDays.map((d,i) => 
-            d ? <Day key={i} date={d} record={record[d]} handler={handler(d)} /> : <></> )}
+            <Day key={i} date={d} record={record[d]} handler={handler(d)} />
+          )}
         </div>
       </main>
     </div>
