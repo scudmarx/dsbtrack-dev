@@ -59,11 +59,19 @@ a {
   background-color:slategrey;
 }
 .adl {
-  background-color: aliceblue;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.adl.death {
+  background-color: aliceblue;
+}
+.adl.shaft {
+  background-color: beige;
+}
+.adl.bombs {
+  background-color: blanchedalmond;
 }
 .adl.achieved {
   background-color: chartreuse;

@@ -3,8 +3,8 @@ export interface IRecordState {
 }
 
 export interface ICheckIn {
-    affect: IAffectScore;
-    adls: {[key:string]: boolean};
+    affect?: IAffectScore;
+    adls: string[];
 }
 
 export interface IAffectScore {
@@ -12,33 +12,31 @@ export interface IAffectScore {
     arousal: number
 }
 
+export const newCheckIn = (): ICheckIn => ({
+    adls: []
+})
+
 export const toDayString = (date: Date) => {
     return date.toISOString().slice(0,10)
 }
 
 export function saveData(record: IRecordState) {
     for(let checkin in record) {
-        for (const adl in record[checkin].adls) {
-            if (!record[checkin].adls[adl]) {
-              delete record[checkin].adls[adl];
-            }
-          }
-        if (Object.keys(record[checkin]?.adls).length > 0) {
+        if (record[checkin].adls.length > 0) {
             let data = JSON.stringify(record[checkin]);
-            console.log(checkin, data)
-            //localStorage[checkin] = data
+            localStorage[`dsbtracker-${checkin}`] = data
         }
     };
 }
 
-export function loadData() {
+export function loadData(): IRecordState {
     let data: IRecordState = {}
     for (const datum in localStorage) {
-        console.log(datum, localStorage[datum])
-        //data[datum] = JSON.parse(localStorage[datum])
+        if (datum.startsWith("dsbtracker-"))
+        data[datum.replace("dsbtracker-", "")] = JSON.parse(localStorage[datum])
     }
-    //console.log(data)
-    //return data
+    console.log("Loaded data:", data)
+    return data
 }
 
 export const ADLs = [
