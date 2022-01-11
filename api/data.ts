@@ -25,6 +25,8 @@ export function saveData(record: IRecordState) {
         if (record[checkin].adls.length > 0) {
             let data = JSON.stringify(record[checkin]);
             localStorage[`dsbtracker-${checkin}`] = data
+        } else {
+            delete localStorage[`dsbtracker-${checkin}`]
         }
     };
 }
