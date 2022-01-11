@@ -3,9 +3,9 @@ const ADL = ({adl, achieved = false, handler = () => {}, index}: {adl: any, achi
     const handleClick = ((event: any) => {
         handler(!achieved)
     })
-    return (
+    return adl ? (
     <div key={adl.label} className={`adl ${achieved ? "achieved" : ""} ${(["death", "shaft", "bombs"])[Math.floor(index / 5)]}`} onClick={handleClick}>
         <span>{adl.label}</span> <input type="checkbox" readOnly checked={achieved} />
-    </div>)
+    </div>) : <></>
 }
 export default ADL
