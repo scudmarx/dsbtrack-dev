@@ -48,7 +48,7 @@ export const ADLs = [
     {key: "T", label: "Toilet", icon:"/Toilet.png"},
     {key: "H", label: "Hygiene", icon:"/Hygiene.png"},
     {key: "S", label: "Shopping", icon:"/Shopping.png"},
-    {key: "H", label: "Housekeeping", icon:"/Housekeeping.png"},
+    {key: "H2", label: "Housekeeping", icon:"/Housekeeping.png"},
     {key: "A2", label: "Accounts", icon:"/Accounts.png"},
     {key: "F", label: "Food Prep", icon:"/Food Prep.png"},
     {key: "T2", label: "Telecoms", icon:"/Telecoms.png"},
