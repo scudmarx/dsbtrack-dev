@@ -8,14 +8,14 @@ const Day = ({date, record, handler}: {date: string, record: ICheckIn, handler: 
     var day_component = (
     <div key={date} className={`day ${timeline > 0 ? "future" : timeline < 0 ? "past" : "today"}`}>
         <div className={`dayhead`}>
-            {daytext}
+            <span className={`dayhead-label`}>{daytext}</span>
         </div>
         {ADLs.map((adl, i) => <ADL 
             index={i}
             key={i}
             adl={adl} 
-            achieved={!!(record && record.adls.includes(adl.label))} 
-            handler={handler(adl.label)}
+            achieved={!!(record && record.adls.includes(adl.key))} 
+            handler={handler(adl.key)}
         />)}
     </div>
     )

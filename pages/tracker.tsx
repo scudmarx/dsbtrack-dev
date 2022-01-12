@@ -10,13 +10,12 @@ const Tracker: NextPage = () => {
   const [columns, setColumns] = useState(7)
   const [dateOffset, setDateOffset] = useState(0)
 
-  const showWeeks = false;
   const today = new Date(new Date().setHours(0, 0, 0, 0))
   
   const days = [1,2,3,4,5,6,7].map(d => toDayString(new Date(today.valueOf() + (d + dateOffset -  7) * 1000 * 60 * 60 * 24)));
 
   const mouseWheel = (e: WheelEvent): void => {
-    setDateOffset(dateOffset + (e.deltaY > 0 ? -1 : 1))
+    if (e.shiftKey) setDateOffset(dateOffset + (e.deltaY > 0 ? -1 : 1))
   }
 
   const handler = (date: string) => (adl: string) => (achieved: boolean) => {

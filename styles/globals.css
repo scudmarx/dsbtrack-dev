@@ -48,7 +48,11 @@ a {
   padding: 10px;
   display: flex;
 }
-.today > .dayhead {
+.dayhead-label {
+  width: 10em;
+  text-align: center;
+}
+.today > .dayhead > .dayhead-label {
   font-size: large;
   font-weight: 600;
 }
@@ -84,4 +88,9 @@ a {
 }
 .adl > input {
   cursor: pointer;
+}
+
+.adl-icon {
+  height: 3rem;
+  padding-right: 3px;
 }
