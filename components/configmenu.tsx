@@ -16,8 +16,8 @@ export function ConfigMenu ({config = {hiddenADLs: []}, handler = () => {}, open
         <>
             <input type="button" className={`configbutton`} onClick={() => openHandler(!open)} value={open ? "-" : "+"} />
             {open && <ul className={`configmenu`}>
-                <li className={`header`}>Hide ADLs:</li>
-                {ADLs.map((adl, i) => <li key={i} className={`option`} onClick={() => handleClick(adl.key)}><img src={`/adl-icons/${adl.icon}`} />{adl.label}<input type="checkbox" checked={config.hiddenADLs.includes(adl.key)} /></li>)}
+                <li className={`header`}>Show ADLs:</li>
+                {ADLs.map((adl, i) => <li key={i} className={`option`} onClick={() => handleClick(adl.key)}><img src={`/adl-icons/${adl.icon}`} />{adl.label}<input type="checkbox" checked={!config.hiddenADLs.includes(adl.key)} /></li>)}
             </ul>}
         </>
     )
