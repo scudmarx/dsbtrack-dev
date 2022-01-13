@@ -11,8 +11,11 @@ const Home: NextPage = () => {
   useEffect(() => {
     (document.getElementsByClassName(styles.title)[0] as HTMLElement).style.transition = "visibility 0s 1s, opacity 1s linear"
     setTimeout(() => {
-      (document.getElementsByClassName(styles.title)[0] as HTMLElement).style.visibility = "hidden";
-      (document.getElementsByClassName(styles.title)[0] as HTMLElement).style.opacity = "0";}, 1500);
+      let title = (document.getElementsByClassName(styles.title)[0] as HTMLElement)
+      if (title) {
+        title.style.visibility = "hidden";
+        title.style.opacity = "0";}
+      }, 1500);
     setTimeout(goTracker, 3500)
   }, [])
   return (
