@@ -15,7 +15,16 @@ const Tracker: NextPage = () => {
   const days = [1,2,3,4,5,6,7].map(d => toDayString(new Date(today.valueOf() + (d + dateOffset -  7) * 1000 * 60 * 60 * 24)));
 
   const mouseWheel = (e: WheelEvent): void => {
-    if (e.shiftKey) setDateOffset(dateOffset + (e.deltaY > 0 ? -1 : 1))
+    if (e.shiftKey) {
+      if (e.deltaY > 0) dayUp();
+      else dayDown();
+    }
+  }
+  const dayUp = () => {
+    setDateOffset(dateOffset + 1)
+  }
+  const dayDown = () => {
+    setDateOffset(dateOffset - 1)
   }
 
   const handler = (date: string) => (adl: string) => (achieved: boolean) => {
@@ -35,7 +44,7 @@ const Tracker: NextPage = () => {
   }
 
   const calcCols = (): void => {
-    setColumns(Math.min(7, Math.floor(innerWidth / 200)))
+    setColumns(Math.min(7, Math.floor(Math.min(screen.availWidth, innerWidth) / 200)))
   }
   useEffect(() => {
     window.onresize = calcCols;
@@ -65,10 +74,14 @@ const Tracker: NextPage = () => {
           DSB Tracker
         </h1>
 
-        <div id="tracker" className="calendar" onWheel={mouseWheel as any as WheelEventHandler<HTMLDivElement>}>
-          {displayedDays.map((d,i) => 
-            <Day key={i} date={d} record={record[d]} handler={handler(d)} />
-          )}
+        <div style={{margin: "0px auto", textAlign: "center"}}>
+        <div className={`navButton`} onClick={dayDown}>{"<"}</div>
+          <div id="tracker" className="calendar" onWheel={mouseWheel as any as WheelEventHandler<HTMLDivElement>}>
+            {displayedDays.map((d,i) => 
+              <Day key={i} date={d} record={record[d]} handler={handler(d)} />
+            )}
+          </div>
+          <div className={`navButton`} onClick={dayUp}>{">"}</div>
         </div>
       </main>
     </div>
