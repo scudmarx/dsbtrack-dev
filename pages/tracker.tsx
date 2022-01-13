@@ -1,14 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState, WheelEventHandler } from 'react'
-import { IRecordState, loadData, newCheckIn, saveData, toDayString } from '../api/data'
+import { ADLs, IConfigState, IRecordState, loadConfig, loadData, newCheckIn, saveConfig, saveData, toDayString } from '../api/data'
+import { ConfigMenu } from '../components/configmenu'
 import Day from '../components/day'
 
 const Tracker: NextPage = () => {
   
+  const [config, setConfig] = useState({hiddenADLs: []} as IConfigState)
   const [record, setrecord]: [IRecordState, (state: IRecordState) => void] = useState({} as IRecordState)
   const [columns, setColumns] = useState(7)
   const [dateOffset, setDateOffset] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const today = new Date(new Date().setHours(0, 0, 0, 0))
   
@@ -25,6 +28,11 @@ const Tracker: NextPage = () => {
   }
   const dayDown = () => {
     setDateOffset(dateOffset - 1)
+  }
+
+  const configHandler = (config: IConfigState): void => {
+    setConfig(config)
+    saveConfig(config);
   }
 
   const handler = (date: string) => (adl: string) => (achieved: boolean) => {
@@ -45,40 +53,43 @@ const Tracker: NextPage = () => {
 
   const calcCols = (): void => {
     setColumns(Math.min(7, Math.floor(Math.min(screen.availWidth, innerWidth) / 200)))
+    document.documentElement.style.setProperty("--adlcount", shownADLs.length.toString())
   }
+
+  const shownADLs = ADLs.filter(adl => !config.hiddenADLs.includes(adl.key))
+
   useEffect(() => {
-    window.onresize = calcCols;
-    calcCols();
     setrecord(loadData());
+    setConfig(loadConfig());
+    window.onresize = calcCols;
   }, [])
-  
+  useEffect(() => {
+    calcCols();
+  }, [config])
+
   const firstcolumn = 7 - columns
   const displayedDays = days.slice(firstcolumn, firstcolumn + columns)
 
   return (
     <div className="container">
       <Head>
-        <title>DSB-Tracker</title>
-        <meta name="description" content="Track your DSB achievements." />
-        <link rel="icon" href="/favicon.ico" />
-        {/*link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossOrigin="anonymous"></link>*/}
+        <title>ADL-Tracker</title>
+        <meta name="description" content="Track your ADLs." />
+        <link rel="icon" href="/adl-icons/Self-Care.png" />
       </Head>
-
-      <div className="progress">
-        <div className="progress-bar" role="progressbar" aria-valuenow={80} aria-valuemin={0} aria-valuemax={100}></div>
-      </div>
-
 
       <main className="main">
         <h1 className="title">
-          DSB Tracker
+          ADL Tracker
         </h1>
+
+        <ConfigMenu config={config} handler={configHandler} openHandler={setMenuOpen} open={menuOpen} />
 
         <div style={{margin: "0px auto", textAlign: "center"}}>
         <div className={`navButton`} onClick={dayDown}>{"<"}</div>
           <div id="tracker" className="calendar" onWheel={mouseWheel as any as WheelEventHandler<HTMLDivElement>}>
             {displayedDays.map((d,i) => 
-              <Day key={i} date={d} record={record[d]} handler={handler(d)} />
+              <Day key={i} date={d} record={record[d]} handler={handler(d)} config={config} />
             )}
           </div>
           <div className={`navButton`} onClick={dayUp}>{">"}</div>

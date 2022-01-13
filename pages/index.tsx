@@ -11,9 +11,9 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>DSB-Tracker</title>
-        <meta name="description" content="Track your DSB achievements." />
-        <link rel="icon" href="/favicon.ico" />
+        <title>ADL-Tracker</title>
+        <meta name="description" content="Track your ADLs." />
+        <link rel="icon" href="/adl-icons/Self-Care.png" />
       </Head>
 
       <main className={styles.main}>

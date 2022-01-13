@@ -1,3 +1,7 @@
+export interface IConfigState {
+    hiddenADLs: string[]
+}
+
 export interface IRecordState {
     [key: string]: ICheckIn;
 }
@@ -22,13 +26,19 @@ export const toDayString = (date: Date) => {
 
 export function saveData(record: IRecordState) {
     for(let checkin in record) {
-        if (record[checkin].adls.length > 0) {
+        if (record[checkin].adls && record[checkin].adls.length > 0) {
             let data = JSON.stringify(record[checkin]);
             localStorage[`dsbtracker-${checkin}`] = data
         } else {
             delete localStorage[`dsbtracker-${checkin}`]
         }
     };
+}
+export function saveConfig(config: IConfigState) {
+    localStorage[`dsbtracker-config`] = JSON.stringify(config)
+}
+export function loadConfig(): IConfigState {
+    return (localStorage[`dsbtracker-config`]) ? JSON.parse(localStorage[`dsbtracker-config`]) : {hiddenADLs: []}
 }
 
 export function loadData(): IRecordState {
@@ -42,19 +52,20 @@ export function loadData(): IRecordState {
 }
 
 export const ADLs = [
-    {key: "D", label: "Dressing", icon:"/Dressing.png"},
-    {key: "E", label: "Eating", icon:"/Eating.png"},
-    {key: "A", label: "Ambulating", icon:"/Ambulating.png"},
-    {key: "T", label: "Toilet", icon:"/Toilet.png"},
-    {key: "H", label: "Hygiene", icon:"/Hygiene.png"},
-    {key: "S", label: "Shopping", icon:"/Shopping.png"},
-    {key: "H2", label: "Housekeeping", icon:"/Housekeeping.png"},
-    {key: "A2", label: "Accounts", icon:"/Accounts.png"},
-    {key: "F", label: "Food Prep", icon:"/Food Prep.png"},
-    {key: "T2", label: "Telecoms", icon:"/Telecoms.png"},
-    {key: "B", label: "Belonging", icon:"/Belonging.png"},
-    {key: "O", label: "Others", icon:"/Others.png"},
-    {key: "M", label: "Medication", icon:"/Medication.png"},
-    {key: "B2", label: "Becoming", icon:"/Becoming.png"},
-    {key: "S2", label: "Self-Care", icon:"/Self-Care.png"},
+    {key: "D", label: "Dressing", icon:"Dressing.png", group:"adl"},
+    {key: "D2", label: "Dressy", icon:"Dressy.png", group:"adl"},
+    {key: "E", label: "Eating", icon:"Eating.png", group:"adl"},
+    {key: "A", label: "Ambulating", icon:"Ambulating.png", group:"adl"},
+    {key: "T", label: "Toilet", icon:"Toilet.png", group:"adl"},
+    {key: "H", label: "Hygiene", icon:"Hygiene.png", group:"adl"},
+    {key: "S", label: "Shopping", icon:"Shopping.png", group:"iadl"},
+    {key: "H2", label: "Housekeeping", icon:"Housekeeping.png", group:"iadl"},
+    {key: "A2", label: "Accounts", icon:"Accounts.png", group:"iadl"},
+    {key: "F", label: "Food Prep", icon:"Food Prep.png", group:"iadl"},
+    {key: "T2", label: "Telecoms", icon:"Telecoms.png", group:"iadl"},
+    {key: "B", label: "Belonging", icon:"Belonging.png", group:"sadl"},
+    {key: "O", label: "Others", icon:"Others.png", group:"sadl"},
+    {key: "M", label: "Medication", icon:"Medication.png", group:"sadl"},
+    {key: "B2", label: "Becoming", icon:"Becoming.png", group:"sadl"},
+    {key: "S2", label: "Self-Care", icon:"Self-Care.png", group:"sadl"},
 ]
