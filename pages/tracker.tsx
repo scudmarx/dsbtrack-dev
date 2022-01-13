@@ -53,7 +53,7 @@ const Tracker: NextPage = () => {
 
   const calcCols = (): void => {
     setColumns(Math.min(7, Math.floor(Math.min(screen.availWidth, innerWidth) / 200)))
-    document.documentElement.style.setProperty("--adlcount", shownADLs.length.toString())
+    document.documentElement.style.setProperty("--adlcount", Math.max(1, shownADLs.length).toString())
   }
 
   const shownADLs = ADLs.filter(adl => !config.hiddenADLs.includes(adl.key))
