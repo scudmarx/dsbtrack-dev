@@ -44,7 +44,7 @@ export function loadConfig(): IConfigState {
 export function loadData(): IRecordState {
     let data: IRecordState = {}
     for (const datum in localStorage) {
-        if (datum.startsWith("dsbtracker-"))
+        if (datum.startsWith("dsbtracker-") && !datum.startsWith("dsbtracker-config"))
         data[datum.replace("dsbtracker-", "")] = JSON.parse(localStorage[datum])
     }
     console.log("Loaded data:", data)
