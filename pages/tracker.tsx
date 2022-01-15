@@ -75,7 +75,10 @@ const Tracker: NextPage = () => {
       <Head>
         <title>ADL-Tracker</title>
         <meta name="description" content="Track your ADLs." />
-        <link rel="icon" href="/adl-icons/Self-Care.png" />
+        <meta name="theme-color" content="#4A90E2"/>
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="icon" href="/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </Head>
 
       <main className="main">
