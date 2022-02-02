@@ -4,8 +4,8 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/tracker",
-    "name": "dbs-tracker",
-    "short_name": "DBS-Tracker",
+    "name": "adl-tracker",
+    "short_name": "ADL-Tracker",
     "description": "An easy way to track your Activities for Daily Living.",
     "icons": [
         {
