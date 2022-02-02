@@ -53,7 +53,6 @@ const Tracker: NextPage = () => {
 
   const calcCols = (): void => {
     setColumns(Math.min(7, Math.floor(Math.min(screen.availWidth, innerWidth) / 200)))
-    document.documentElement.style.setProperty("--adlcount", Math.max(1, shownADLs.length).toString())
   }
 
   const shownADLs = ADLs.filter(adl => !config.hiddenADLs.includes(adl.key))
@@ -89,7 +88,7 @@ const Tracker: NextPage = () => {
         <ConfigMenu config={config} handler={configHandler} openHandler={setMenuOpen} open={menuOpen} />
 
         <div style={{margin: "0px auto", textAlign: "center"}}>
-        <div className={`navButton`} onClick={dayDown}>{"<"}</div>
+          <div className={`navButton`} onClick={dayDown}>{"<"}</div>
           <div id="tracker" className="calendar" onWheel={mouseWheel as any as WheelEventHandler<HTMLDivElement>}>
             {displayedDays.map((d,i) => 
               <Day key={i} date={d} record={record[d]} handler={handler(d)} config={config} />
