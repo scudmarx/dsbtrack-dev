@@ -63,9 +63,9 @@ export const ADLs = [
     {key: "A2", label: "Accounts", icon:"Accounts.png", group:"iadl"},
     {key: "F", label: "Food Prep", icon:"Food Prep.png", group:"iadl"},
     {key: "T2", label: "Telecoms", icon:"Telecoms.png", group:"iadl"},
-    {key: "B", label: "Belonging", icon:"Belonging.png", group:"sadl"},
+    {key: "B2", label: "Becoming", icon:"Becoming.png", group:"sadl"},
     {key: "O", label: "Others", icon:"Others.png", group:"sadl"},
     {key: "M", label: "Medication", icon:"Medication.png", group:"sadl"},
-    {key: "B2", label: "Becoming", icon:"Becoming.png", group:"sadl"},
+    {key: "B", label: "Belonging", icon:"Belonging.png", group:"sadl"},
     {key: "S2", label: "Self-Care", icon:"Self-Care.png", group:"sadl"},
 ]
