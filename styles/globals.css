@@ -173,6 +173,12 @@ input {
 .adl.achieved {
   background-color: chartreuse;
 }
+.adl.partial {
+  background-color: hotpink;
+}
+.adl.partial *:checked {
+  mask-image: linear-gradient(90deg, rgba(0,0,0,1), rgba(0,0,0,0));
+}
 .adl > input {
   cursor: pointer;
 }

@@ -35,18 +35,44 @@ const Tracker: NextPage = () => {
     saveConfig(config);
   }
 
-  const handler = (date: string) => (adl: string) => (achieved: boolean) => {
+  const handler = (date: string) => (adl: string) => (achieved: boolean | "partial") => {
     let newrecord = {...record}
     if (!newrecord[date]) newrecord[date] = newCheckIn();
-    if (!achieved) {
-      if (newrecord[date].adls.includes(adl)) {
-        newrecord[date].adls.splice(newrecord[date].adls.indexOf(adl), 1)
+    if (config.use_partials) {
+      if (typeof(newrecord[date].partial_adls) == "undefined") newrecord[date].partial_adls = [];
+      if (achieved == "partial") {
+        if ((newrecord[date].partial_adls as string[]).includes(adl)) {
+          (newrecord[date].partial_adls as string[]).splice((newrecord[date].partial_adls as string[]).indexOf(adl), 1)
+        }
+      }
+
+      if (achieved === true) {
+        if (newrecord[date].adls.includes(adl)) {
+          newrecord[date].adls.splice(newrecord[date].adls.indexOf(adl), 1);
+          (newrecord[date].partial_adls as string[]).push(adl)
+        }
+      }
+      
+      if (!achieved) {
+        if (!newrecord[date].adls.includes(adl)) {
+          newrecord[date].adls.push(adl)
+        }
       }
     } else {
-      if (!newrecord[date].adls.includes(adl)) {
-        newrecord[date].adls.push(adl)
+      if (achieved) {
+        if (newrecord[date].adls.includes(adl)) {
+          newrecord[date].adls.splice(newrecord[date].adls.indexOf(adl), 1)
+        }
+        if (newrecord[date].partial_adls && (newrecord[date].partial_adls as string[]).includes(adl)) {
+          (newrecord[date].partial_adls as string[]).splice((newrecord[date].partial_adls as string[]).indexOf(adl), 1)
+        }
+      } else {
+        if (!newrecord[date].adls.includes(adl)) {
+          newrecord[date].adls.push(adl)
+        }
       }
     }
+    
     setrecord(newrecord)
     saveData(newrecord);
   }

@@ -15,7 +15,7 @@ const Day = ({date, record, handler, config}: {date: string, record: ICheckIn, h
             index={i}
             key={i}
             adl={adl} 
-            achieved={!!(record && record.adls.includes(adl.key))} 
+            achieved={(record && record.partial_adls?.includes(adl.key)) ? "partial" : !!(record && record.adls.includes(adl.key))} 
             handler={handler(adl.key)}
             config={config}
         />)}

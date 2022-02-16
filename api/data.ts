@@ -1,5 +1,6 @@
 export interface IConfigState {
     hiddenADLs: string[]
+    use_partials?: boolean;
 }
 
 export interface IRecordState {
@@ -9,6 +10,7 @@ export interface IRecordState {
 export interface ICheckIn {
     affect?: IAffectScore;
     adls: string[];
+    partial_adls?: string[];
 }
 
 export interface IAffectScore {
@@ -26,7 +28,7 @@ export const toDayString = (date: Date) => {
 
 export function saveData(record: IRecordState) {
     for(let checkin in record) {
-        if (record[checkin].adls && record[checkin].adls.length > 0) {
+        if (record[checkin].adls && (record[checkin].adls.length > 0) || (record[checkin].partial_adls && (record[checkin].partial_adls as string[]).length > 0)) {
             let data = JSON.stringify(record[checkin]);
             localStorage[`dsbtracker-${checkin}`] = data
         } else {
