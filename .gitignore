@@ -41,4 +41,4 @@ yarn-error.log*
 public/sw.js
 
 # webapp
-workbox-*.js
+public/workbox-*.js*

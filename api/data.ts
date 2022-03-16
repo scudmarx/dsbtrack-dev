@@ -60,6 +60,7 @@ export const ADLs = [
     {key: "A", label: "Ambulating", icon:"Ambulating.png", group:"adl"},
     {key: "T", label: "Toilet", icon:"Toilet.png", group:"adl"},
     {key: "H", label: "Hygiene", icon:"Hygiene.png", group:"adl"},
+    {key: "T3", label: "Teeth", icon:"Teeth.png", group:"adl"},
     {key: "S", label: "Shopping", icon:"Shopping.png", group:"iadl"},
     {key: "H2", label: "Housekeeping", icon:"Housekeeping.png", group:"iadl"},
     {key: "A2", label: "Accounts", icon:"Accounts.png", group:"iadl"},
@@ -68,6 +69,7 @@ export const ADLs = [
     {key: "B2", label: "Becoming", icon:"Becoming.png", group:"sadl"},
     {key: "O", label: "Others", icon:"Others.png", group:"sadl"},
     {key: "M", label: "Medication", icon:"Medication.png", group:"sadl"},
+    {key: "S3", label: "Sleep", icon:"Pillow.png", group:"sadl"},
     {key: "B", label: "Belonging", icon:"Belonging.png", group:"sadl"},
     {key: "S2", label: "Self-Care", icon:"Self-Care.png", group:"sadl"},
 ]
