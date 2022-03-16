@@ -106,6 +106,7 @@ input {
   animation: fadein 2s;
   vertical-align: top;
   line-height: 30px;
+  grid-auto-columns: minmax(100px, auto);
 }
 
 .day {
