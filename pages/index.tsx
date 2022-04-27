@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 
       <footer className={styles.footer}>
         <span className={styles.logo}>
-          For <a href="https://twitch.tv/JaneTheMessage/">Jane</a> by Scudmarx
+          For <a href="https://twitch.tv/JaneTheMessage/">Jane</a> by Scudmarx, with art by both.
         </span>
       </footer>
     </div>
